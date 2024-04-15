@@ -1,8 +1,7 @@
-import { Address } from "@prisma/client";
 import { prisma } from "../database/prisma";
 
 class AddressService {
-    async create(payload: any): Promise<Address>{
+    async create(payload: any) {
         const findAddress = await prisma.address.findUnique({
             where: {
                 code: payload.code
@@ -18,13 +17,13 @@ class AddressService {
         return address;
     }
 
-    async read(): Promise<Address[]>{
+    async read() {
         const address = await prisma.address.findMany();
 
         return address;
     }
 
-    async retrive(id: number): Promise<Address>{
+    async retrive(id: number) {
         const findAddress = await prisma.address.findUnique({
             where: {
                 id
@@ -36,7 +35,7 @@ class AddressService {
         return findAddress;
     }
 
-    async update(id: number, payload: any): Promise<Address>{
+    async update(id: number, payload: any) {
         const findAddress = await prisma.address.findUnique({
             where: {
                 id
@@ -55,7 +54,7 @@ class AddressService {
         return address;
     }
     
-    async destroy(id: number): Promise<void>{
+    async destroy(id: number) {
         const findAddress = await prisma.address.findUnique({
             where: {
                 id

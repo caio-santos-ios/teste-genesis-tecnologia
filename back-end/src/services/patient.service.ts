@@ -1,8 +1,7 @@
-import { Patient } from "@prisma/client";
 import { prisma } from "../database/prisma";
 
 class PatientService {
-    async create(payload: any): Promise<any>{
+    async create(payload: any) {
         let myAddress;
     
         const findPatient = await prisma.patient.findUnique({
@@ -39,7 +38,7 @@ class PatientService {
         return patient;
     }
 
-    async read(): Promise<any>{
+    async read() {
         const patienties = await prisma.patient.findMany({
             include: {
                 address: true
@@ -49,7 +48,7 @@ class PatientService {
         return patienties;
     }
 
-    async retrive(id: number): Promise<any>{
+    async retrive(id: number) {
         const patient = await prisma.patient.findUnique({
             where: {
                 id
@@ -61,7 +60,7 @@ class PatientService {
         return patient;
     }
 
-    async update(id: number, payload: any): Promise<any>{
+    async update(id: number, payload: any) {
         const patient = await prisma.patient.findUnique({
             where: {
                 id
@@ -80,7 +79,7 @@ class PatientService {
         return patientUpdated;
     }
     
-    async destroy(id: number): Promise<any>{
+    async destroy(id: number) {
         const patient = await prisma.patient.findUnique({
             where: {
                 id
