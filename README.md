@@ -2,6 +2,12 @@
 <p>
     Esse teste tecnico tem como objetivo testar minha habilidades para uma vaga na empresa Genesis Tecnologia.
 </p>
+### Tecnologias:
+<li>Vue.Js</li>
+<li>Typescript</li>
+<li>Vuetify</li>
+<li>Axios</li>
+
 
 ## Getting Started - Front end
 
