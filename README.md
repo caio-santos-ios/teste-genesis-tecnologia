@@ -3,9 +3,9 @@
     Esse teste tecnico tem como objetivo testar minha habilidades para uma vaga na empresa Genesis Tecnologia.
 </p>
 
-## Getting Started
+## Getting Started - Front end
 
-Primeiro, entre na pasta front-end e instale as dependencias ```bash npm install ``` execute:
+Primeiro, entre na pasta front-end e instale as dependencias ```npm install ``` e após execute:
 
 ```bash
 npm run dev
@@ -15,4 +15,12 @@ yarn dev
 pnpm dev
 # or
 bun dev
+```
+
+## Getting Started - Back end
+
+Primeiro, entre na pasta back-end e instale as dependencias ```npm install ``` e após execute:
+
+```bash
+npm run dev
 ```
