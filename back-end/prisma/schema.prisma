@@ -18,16 +18,10 @@ model Patient {
   cpf             String      @db.VarChar(11)   @unique
   name            String      @db.VarChar(150)  
   email           String?     @db.VarChar(150)  @unique
-  dateOfBirth     DateTime?   @db.Date
   gender          Gender      
-  address         Address     @relation(fields: [addressId], references: [id])
-  addressId       Int     
-  telephone       String      @db.VarChar(11)  @unique       
+  telephone       String      @db.VarChar(15)  @unique       
   height          Decimal     
-  weight          Decimal
-  bloodGroup      String
-  allergies       Boolean
-  medicalHistory  Boolean     
+  weight          Decimal  
   observation     String?     @db.Text
   created_at      DateTime    @db.Timestamp() @default(now())
   updated_at      DateTime    @updatedAt
@@ -35,22 +29,7 @@ model Patient {
   @@map("patients")
 }
 
-model Address {
-  id              Int         @id               @default(autoincrement())
-  code            String      @db.VarChar(8)    @unique
-  state           String      @db.VarChar(2)
-  city            String      @db.VarChar(100)
-  road            String      @db.VarChar(100)
-  neighborhood    String
-  number          Int
-  patient         Patient[]
-  created_at      DateTime    @db.Timestamp() @default(now())
-  updated_at      DateTime    @updatedAt
-  
-  @@map("address")
-}
-
 enum Gender {
-  MASCULINO
-  FEMININO
+  Masculino
+  Feminino
 }

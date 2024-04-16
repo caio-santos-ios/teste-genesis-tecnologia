@@ -2,11 +2,11 @@ import "express-async-errors";
 import express, { json } from "express";
 import cors from "cors";
 import { patientRouter } from "./routers/patient.router";
-import { addressRouter } from "./routers/address.router";
+import { handlerErro } from "./middlewares/handlerErro.middleware";
 
 export const app = express()
 
 app.use(json())
 app.use(cors())
 app.use("/api/patients", patientRouter)
-app.use("/api/address", addressRouter)
+app.use(handlerErro)

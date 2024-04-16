@@ -1,49 +1,25 @@
+import { AppErro } from "../AppError";
 import { prisma } from "../database/prisma";
 
 class PatientService {
-    async create(payload: any) {
-        let myAddress;
-    
+    async create(payload: any) {   
         const findPatient = await prisma.patient.findUnique({
             where: {
                 cpf: payload.cpf
             }
         })
-
-        if(findPatient) throw new Error("CPF inválido")
-
-        const findAddress = await prisma.address.findUnique({
-            where: {
-                code: payload.address.code
-            }
-        })
-
-        if(findAddress) {
-            myAddress = findAddress;
-        } else {
-            myAddress = await prisma.address.create({
-                data: payload.address
-            })
-        }
-
-        delete payload.address
+       
+        if(findPatient) throw new AppErro("CPF inválido", 400)
        
         const patient = await prisma.patient.create({
-            data: {
-                ...payload,                
-                addressId: 1
-            }
+            data: payload
         })
 
         return patient;
     }
 
     async read() {
-        const patienties = await prisma.patient.findMany({
-            include: {
-                address: true
-            }
-        });
+        const patienties = await prisma.patient.findMany();
 
         return patienties;
     }
@@ -55,7 +31,7 @@ class PatientService {
             }
         })
 
-        if(!patient) throw new Error("not found")
+        if(!patient) throw new AppErro("not found", 404)
 
         return patient;
     }
@@ -67,7 +43,7 @@ class PatientService {
             }
         })
 
-        if(!patient) throw new Error("not found")
+        if(!patient) throw new AppErro("not found", 404)
 
         const patientUpdated = await prisma.patient.update({
             where: {
@@ -86,7 +62,7 @@ class PatientService {
             }
         })
 
-        if(!patient) throw new Error("not found")
+        if(!patient) throw new AppErro("not found", 404)
 
         await prisma.patient.delete({
             where: {
